@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: black;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -24,8 +25,16 @@ textarea {
 }
 
 #countDownBox {
+    padding-top: 5em;
     display: flex;
     justify-content: center;
+    color: darkred;
+}
+
+#subTitleBox {
+    display: flex;
+    justify-content: center;
+    color: darkorange;
 }
 
 #missionDetailsBox {
@@ -33,12 +42,37 @@ textarea {
     justify-content: flex-start;
     flex-direction: column;
     visibility: hidden;
+    color: azure;
 }
 
 #missionDetailsBtn {
     visibility: visible;
+    margin-bottom: 3em;
 }
 
 .showDetails {
     visibility: visible;
+    
+}
+
+/*#craftImg {
+    visibility: hidden;
+}*/
+#craftImg {
+    display: none;
+}
+
+#falcon9Img {
+    max-height: 100%;
+    max-width: 100%;
+    width: auto;
+}
+#falconHeavyImg {
+    max-height: 100%;
+    max-width: 100%;
+    width: auto;
+}
+
+#craftName {
+    font-size: 1.5em;
 }

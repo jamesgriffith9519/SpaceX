@@ -5,15 +5,22 @@
 <div id="countDownBox">
     <h1 id="countDown"></h1>
 </div>
-
+<div id="subTitleBox">
+    <p>...Until Launch</p>
+</div>
 <div id="missionDetailsBox" class="">
     <div>
-        <button class="btn btn-primary" id="missionDetailsBtn">Mission Details</button>
+        <button class="btn btn-success" id="missionDetailsBtn">Mission Details</button>
     </div>
     <div>
         <p id="craftName"><strong>Rocket Name: </strong></p>
+        <div id="craftImg">
+            <img src="~/Content/imgs/spaceXFalcon9.jpg" id="falcon9Img" />
+        </div>
+        <div><h1>Testing</h1></div>
+        
     </div>
-    
+
 </div>
 
 @section scripts {
@@ -21,6 +28,7 @@
     <script>
 
         document.getElementById("missionDetailsBtn").addEventListener("click", missionDetails);
+        
 
         function missionDetails() {
             var x = document.getElementById("missionDetailsBox");
@@ -31,6 +39,13 @@
             }
         }
 
+        //function showContentImg() {
+        //    document.getElementById("craftImg").style.visibility === "visible";
+        //}
+
+        
+
+
         var url = "https://api.spacexdata.com/v3/launches/next";
 
         $(function () {
@@ -38,7 +53,33 @@
                 //var nextLaunch = next.flight_number;
                 var nextLaunch = next.launch_date_utc;
                 document.getElementById("craftName").innerHTML += next.rocket.rocket_name;
-                //console.log(next.rocket.rocket_name);
+                
+                
+                
+
+                //function testing() {
+                //    if (next.rocket.rocket_id === "falcon8" && document.getElementById("missionDetailsBox").style.visibility === "visible") {
+                //        var craftImg = document.getElementById("craftImg");
+                //        craftImg.style.visibility = "visible";
+                //    } else {
+
+                //        document.getElementById("craftImg").style.visibility = "hidden";
+                //    }
+                //}
+
+                //this function to display the falcon 9 rocket image is hard coded and annoying. Thinking about putting a DB together of rocket images from spaceX that way i can dynamically put which ever rocket is being launched. 
+                //^-- saved for future update. 
+                function testing() {
+                    if (next.rocket.rocket_id === "falcon9" && document.getElementById("missionDetailsBox").style.visibility === "visible") {
+                        var craftImg = document.getElementById("craftImg");
+                        craftImg.style.display = "initial";
+                    } else {
+
+                        document.getElementById("craftImg").style.display = "none";
+                    }
+                }
+                document.getElementById("missionDetailsBtn").addEventListener("click", testing);
+
 
                 var x = setInterval(function() {
 
@@ -59,8 +100,8 @@
                     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
     
                     // Output the result in an element with id="countDown"
-                    document.getElementById("countDown").innerHTML = days + "d " + hours + "h "
-                        + minutes + "m " + seconds + "s ";
+                    document.getElementById("countDown").innerHTML = days + "D " + hours + "H "
+                        + minutes + "M " + seconds + "S ";
                     console.log(now);
 
                     // If the count down is over or next launch is not loaded into API, display NO UPCOMING LAUNCHES
@@ -76,7 +117,7 @@
             
         });//end function block to get json data from the api and use it on screen
 
-
+        
     </script>
     
     }
