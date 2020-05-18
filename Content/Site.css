@@ -22,3 +22,23 @@ select,
 textarea {
     max-width: 280px;
 }
+
+#countDownBox {
+    display: flex;
+    justify-content: center;
+}
+
+#missionDetailsBox {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    visibility: hidden;
+}
+
+#missionDetailsBtn {
+    visibility: visible;
+}
+
+.showDetails {
+    visibility: visible;
+}

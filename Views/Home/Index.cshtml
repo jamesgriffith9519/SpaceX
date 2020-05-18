@@ -2,18 +2,43 @@
     ViewBag.Title = "Home Page";
 }
 
-<p id="countDown"></p>
+<div id="countDownBox">
+    <h1 id="countDown"></h1>
+</div>
+
+<div id="missionDetailsBox" class="">
+    <div>
+        <button class="btn btn-primary" id="missionDetailsBtn">Mission Details</button>
+    </div>
+    <div>
+        <p id="craftName"><strong>Rocket Name: </strong></p>
+    </div>
+    
+</div>
 
 @section scripts {
     
     <script>
+
+        document.getElementById("missionDetailsBtn").addEventListener("click", missionDetails);
+
+        function missionDetails() {
+            var x = document.getElementById("missionDetailsBox");
+            if (x.style.visibility === "hidden") {
+                x.style.visibility = "visible";
+            } else {
+                x.style.visibility = "hidden"; 
+            }
+        }
+
         var url = "https://api.spacexdata.com/v3/launches/next";
 
         $(function () {
             $.getJSON(url).done(function (next) {
                 //var nextLaunch = next.flight_number;
                 var nextLaunch = next.launch_date_utc;
-
+                document.getElementById("craftName").innerHTML += next.rocket.rocket_name;
+                //console.log(next.rocket.rocket_name);
 
                 var x = setInterval(function() {
 
@@ -51,8 +76,6 @@
             
         });//end function block to get json data from the api and use it on screen
 
-
-        
 
     </script>
     
