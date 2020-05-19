@@ -2,6 +2,9 @@
     padding-top: 50px;
     padding-bottom: 20px;
     background-color: black;
+    /*background-image: url('imgs/spaceXlogo.png');*/
+    background-repeat: no-repeat;
+    background-size: auto;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -25,7 +28,6 @@ textarea {
 }
 
 #countDownBox {
-    padding-top: 5em;
     display: flex;
     justify-content: center;
     color: darkred;
@@ -43,11 +45,24 @@ textarea {
     flex-direction: column;
     visibility: hidden;
     color: azure;
+    background-color: black;
+}
+
+#missionDetailsBox div {
+    margin: 1.5em;
 }
 
 #missionDetailsBtn {
     visibility: visible;
     margin-bottom: 3em;
+    background-color: #005288;
+    border: none;
+}
+#missionDetailsBtn:hover {
+    cursor: pointer;
+    background-color: whitesmoke;
+    color: #005288;
+    border-color: #005288;
 }
 
 .showDetails {
@@ -61,18 +76,68 @@ textarea {
 #craftImg {
     display: none;
 }
+#logo {
+    display: flex;
+    justify-content: center;
+}
+
+#logo img {
+    max-height: 100%;
+    max-width: 100%;
+    width: auto;
+}
 
 #falcon9Img {
     max-height: 100%;
     max-width: 100%;
     width: auto;
+    display: none;
+}
+#dragonImg {
+    max-height: 100%;
+    max-width: 100%;
+    width: auto;
+    display: none;
 }
 #falconHeavyImg {
     max-height: 100%;
     max-width: 100%;
     width: auto;
+    display: none;
+}
+#starshipImg {
+    max-height: 100%;
+    max-width: 100%;
+    width: auto;
+    display: none;
 }
 
 #craftName {
+    /*font-size: 1.5em;*/
+}
+
+#countDown {
+   font-family: 'Allerta Stencil', sans-serif;
+    font-size: 3em;
+}
+
+#subTitleBox p {
+    font-family: 'Allerta Stencil', sans-serif;
+}
+
+@media only screen and (max-width: 600px) {
+    body {
+        background-image: none;
+    }
+}
+
+@media only screen and (max-width: 475px) {
+    #countDown {
+        font-size: 2.5em;
+    }
+}
+
+strong {
+    color: #005288;
     font-size: 1.5em;
 }

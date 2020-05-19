@@ -1,7 +1,9 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-
+<div id="logo">
+    <img src="~/Content/imgs/hzrRwO3.png" />
+</div>
 <div id="countDownBox">
     <h1 id="countDown"></h1>
 </div>
@@ -13,12 +15,23 @@
         <button class="btn btn-success" id="missionDetailsBtn">Mission Details</button>
     </div>
     <div>
-        <p id="craftName"><strong>Rocket Name: </strong></p>
-        <div id="craftImg">
-            <img src="~/Content/imgs/spaceXFalcon9.jpg" id="falcon9Img" />
+        <div>
+            <p id="missionInfo"><strong >Mission Summary: <br/></strong></p>
         </div>
-        <div><h1>Testing</h1></div>
-        
+        <div>
+            <p id="craftName"><strong>Rocket Name: </strong></p>
+        </div>
+        <div id="craftImg">
+            <img src="~/Content/imgs/spaceXFalcon9.jpg" id="falcon9Img" alt="" />
+            <img src="~/Content/imgs/dragonSpaceX.PNG" id="dragonImg" alt="" />
+            <img src="~/Content/imgs/spaceXStarship.PNG" id="starshipImg" alt="" />
+        </div>
+        <div>
+            <p id="launchLocation"><strong>Launch Location: </strong> </p>
+        </div>
+        <div>
+            <p id="launchDateUTC"><strong>Launch Date: </strong> </p>
+        </div>
     </div>
 
 </div>
@@ -30,19 +43,17 @@
         document.getElementById("missionDetailsBtn").addEventListener("click", missionDetails);
         
 
+
         function missionDetails() {
             var x = document.getElementById("missionDetailsBox");
             if (x.style.visibility === "hidden") {
                 x.style.visibility = "visible";
             } else {
-                x.style.visibility = "hidden"; 
+                x.style.visibility = "hidden";
             }
         }
 
-        //function showContentImg() {
-        //    document.getElementById("craftImg").style.visibility === "visible";
-        //}
-
+      
         
 
 
@@ -53,32 +64,64 @@
                 //var nextLaunch = next.flight_number;
                 var nextLaunch = next.launch_date_utc;
                 document.getElementById("craftName").innerHTML += next.rocket.rocket_name;
-                
-                
-                
-
-                //function testing() {
-                //    if (next.rocket.rocket_id === "falcon8" && document.getElementById("missionDetailsBox").style.visibility === "visible") {
-                //        var craftImg = document.getElementById("craftImg");
-                //        craftImg.style.visibility = "visible";
-                //    } else {
-
-                //        document.getElementById("craftImg").style.visibility = "hidden";
-                //    }
-                //}
+                document.getElementById("launchLocation").innerHTML += next.launch_site.site_name_long;
+                document.getElementById("launchDateUTC").innerHTML += next.launch_date_utc;
+                document.getElementById("missionInfo").innerHTML += next.details;
 
                 //this function to display the falcon 9 rocket image is hard coded and annoying. Thinking about putting a DB together of rocket images from spaceX that way i can dynamically put which ever rocket is being launched. 
                 //^-- saved for future update. 
-                function testing() {
+
+
+
+                //function testing() {
+                //    if (next.rocket.rocket_id === "falcon9" && document.getElementById("missionDetailsBox").style.visibility === "visible") {
+                //        var craftImg = document.getElementById("craftImg");
+                //        craftImg.style.display = "initial";
+                //    } else {
+
+                //        document.getElementById("craftImg").style.display = "none";
+                //    }
+                //}
+                //document.getElementById("missionDetailsBtn").addEventListener("click", testing);
+
+
+                function displayImg() {
                     if (next.rocket.rocket_id === "falcon9" && document.getElementById("missionDetailsBox").style.visibility === "visible") {
-                        var craftImg = document.getElementById("craftImg");
-                        craftImg.style.display = "initial";
+                        var craftimg = document.getElementById("craftImg");
+                        craftimg.style.display = "initial";
+                        var falcon9 = document.getElementById("falcon9Img");
+                        falcon9.style.display = "initial";
+                        
                     } else {
 
+                        document.getElementById("falcon9Img").style.display = "none";
                         document.getElementById("craftImg").style.display = "none";
                     }
                 }
-                document.getElementById("missionDetailsBtn").addEventListener("click", testing);
+                document.getElementById("missionDetailsBtn").addEventListener("click", displayImg);
+
+
+
+
+
+
+                //function testing() {
+                //    if (next.rocket.rocket_id === "falcon9" && document.getElementById("missionDetailsBox").style.visibility === "visible") {
+                //        var falcon9Imgz = document.getElementById("falcon9Img");
+                //        falcon9Imgz.style.display = "initial";
+                //    } else if (next.rocket.rocket_id === "starship" && document.getElementById("missionDetailsBox").style.visibility === "visible") {
+                //        var starshipImg = document.getElementById("starshipImg");
+                //        starshipImg.style.display = "initial";
+                //    } else if (next.rocket.rocket_id === "dragon" && document.getElementById("missionDetailsBox").style.visibility === "visible") {
+                //        var dragonImg = document.getElementById("dragonImg");
+                //        dragonImg.style.display = "initial";
+                //    } else {
+                //        document.getElementById("craftImg").style.display = "none";
+                //    }
+                //}//end testing function()
+
+
+                //document.getElementById("missionDetailsBtn").addEventListener("click", testing);
 
 
                 var x = setInterval(function() {
@@ -100,8 +143,8 @@
                     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
     
                     // Output the result in an element with id="countDown"
-                    document.getElementById("countDown").innerHTML = days + "D " + hours + "H "
-                        + minutes + "M " + seconds + "S ";
+                    document.getElementById("countDown").innerHTML = days + "D | " + hours + "H | "
+                        + minutes + "M | " + seconds + "S ";
                     console.log(now);
 
                     // If the count down is over or next launch is not loaded into API, display NO UPCOMING LAUNCHES
